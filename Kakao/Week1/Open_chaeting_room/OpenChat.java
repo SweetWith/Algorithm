@@ -1,4 +1,4 @@
-package Algorithm.Kakao.Week1.Open_chaeting_room;
+package Kakao.Week1.Open_chaeting_room;
 
 import java.util.Map;
 import java.util.ArrayList;
