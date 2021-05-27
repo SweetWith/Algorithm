@@ -9,9 +9,36 @@
  *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
  * };
  */
+int DP[1005];
+int ans;
+int target;
+void solve(TreeNode* head, int r) {
+    TreeNode* lo = head->left;
+    TreeNode* ro = head->right;
+    int val = head->val;
+    DP[r] = DP[r - 1] + val;
+    int to = r;
+    while (to >= 1) {
+        if (DP[r] - DP[to -1] == target) {
+            ans++;
+        }
+        --to;
+    }
+    if (lo != nullptr) {
+        solve(lo, r + 1);    
+    }
+    if (ro != nullptr) {
+        solve(ro, r + 1);
+    }
+}
 class Solution {
 public:
     int pathSum(TreeNode* root, int targetSum) {
-        solve(root, 1);    
+        ans = 0;
+        target = targetSum;
+        if (root != nullptr) {
+            solve(root, 1);
+        }
+        return ans;
     }
 };
